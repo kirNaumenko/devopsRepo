@@ -11,7 +11,7 @@ jobs:
       ARM_TENANT_ID: ${{ secrets.TF_ARM_TENANT_ID }}
       
     name: 'Terraform init and plan'
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout 
         uses: actions/checkout@v3
