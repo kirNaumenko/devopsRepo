@@ -12,6 +12,9 @@ jobs:
       
     name: 'Terraform init and plan'
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./azure
     steps:
       - name: Checkout 
         uses: actions/checkout@v3
