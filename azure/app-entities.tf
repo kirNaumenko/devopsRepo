@@ -1,9 +1,3 @@
-data "azuread_client_config" "current" {}
-
-data "azuread_user" "owner" {
-  user_principal_name = var.owner
-}
-
 resource "azuread_application" "github-actions-ar" {
   display_name = "github-actions-ar"
 }
@@ -15,7 +9,6 @@ resource "azuread_application_password" "github-actions-app-secret" {
 resource "azuread_service_principal" "github-actions-sp" {
   client_id    = azuread_application.github-actions-ar.client_id
   app_role_assignment_required = false
-  owners                       = [azuread_user.owner]
 }
 
 resource "azuread_service_principal_password" "github-actions-sp-secret" {
