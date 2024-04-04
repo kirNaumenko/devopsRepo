@@ -4,11 +4,11 @@ on:
 
 jobs:
   terraform-plan:
-    # env:
-    #   ARM_CLIENT_ID: ${{ secrets.TF_ARM_CLIENT_ID }}
-    #   ARM_CLIENT_SECRET: ${{ secrets.TF_ARM_CLIENT_SECRET }}
-    #   ARM_SUBSCRIPTION_ID: ${{ secrets.TF_ARM_SUBSCRIPTION_ID }}
-    #   ARM_TENANT_ID: ${{ secrets.TF_ARM_TENANT_ID }}
+    env:
+      ARM_CLIENT_ID: ${{ secrets.TF_ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.TF_ARM_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.TF_ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.TF_ARM_TENANT_ID }}
       
     name: 'Terraform init and plan'
     runs-on: ubuntu-latest
@@ -24,10 +24,10 @@ jobs:
         with:
           terraform_wrapper: false
           
-      - name: Configure Azure credentials
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      # - name: Configure Azure credentials
+      #   uses: azure/login@v1
+      #   with:
+      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
           
       - name: Terraform Init
         run: terraform init
