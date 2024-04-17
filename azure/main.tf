@@ -8,4 +8,5 @@ resource "azurerm_container_registry" "acr" {
   resource_group_name = azurerm_resource_group.kubernetes-cluster-rg.name
   location            = azurerm_resource_group.kubernetes-cluster-rg.location
   sku                 = "Basic"
+  admin_enabled       = true
 }
