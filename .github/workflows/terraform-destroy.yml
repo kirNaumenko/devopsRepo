@@ -1,0 +1,31 @@
+name: 'Terraform plan and apply'
+on:
+  workflow_dispatch
+
+jobs:
+  terraform-destroy:
+    env:
+      ARM_CLIENT_ID: ${{ secrets.TF_ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.TF_ARM_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.TF_ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.TF_ARM_TENANT_ID }}
+      
+    name: 'Terraform destroy'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./azure
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v4
+        
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+          
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform destroy
+        run: terraform destroy -auto-approve
