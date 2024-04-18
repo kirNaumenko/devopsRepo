@@ -28,7 +28,7 @@ jobs:
         run: terraform init
 
       - name: Terraform destroy aks
-        run: terraform destroy azurerm_kubernetes_cluster.aks -auto-approve
+        run: terraform destroy -target=azurerm_kubernetes_cluster.aks -auto-approve
         
       - name: Terraform destroy acr
-        run: terraform destroy azurerm_container_registry.acr -auto-approve
+        run: terraform destroy -target=azurerm_container_registry.acr -auto-approve
