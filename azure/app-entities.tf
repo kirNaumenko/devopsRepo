@@ -12,7 +12,7 @@ resource "azuread_service_principal" "github-actions-sp" {
 }
 
 resource "azuread_service_principal_password" "github-actions-sp-secret" {
-  service_principal_id = azuread_service_principal.github-actions-sp.id
+  service_principal_id = azuread_service_principal.github-actions-sp.object_id
 }
 
 resource "azurerm_role_assignment" "github-actions-sp-contributor" {
